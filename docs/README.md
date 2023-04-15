@@ -123,10 +123,10 @@ These states dictate the behaviour of the game.
 
 We can check the implementation of this pattern in our code in the following links:
 
-- [State](https://github.com/FEUP-LDTS-2022/project-l09gr04/blob/7cba1489a9f42975289dfa973fcb3078089bf3eb/src/main/java/com/aor/brickbreaker/states/State.java)
-- [GameState](https://github.com/FEUP-LDTS-2022/project-l09gr04/blob/7cba1489a9f42975289dfa973fcb3078089bf3eb/src/main/java/com/aor/brickbreaker/states/GameState.java)
-- [MenuState](https://github.com/FEUP-LDTS-2022/project-l09gr04/blob/7cba1489a9f42975289dfa973fcb3078089bf3eb/src/main/java/com/aor/brickbreaker/states/MenuState.java)
-- [InstructionsState](https://github.com/FEUP-LDTS-2022/project-l09gr04/blob/7cba1489a9f42975289dfa973fcb3078089bf3eb/src/main/java/com/aor/brickbreaker/states/InstructionsState.java)
+- [State](https://github.com/leonor-f/LDTS_BrickBreaker/blob/master/src/main/java/com/aor/brickbreaker/states/State.java)
+- [GameState](https://github.com/leonor-f/LDTS_BrickBreaker/blob/master/src/main/java/com/aor/brickbreaker/states/GameState.java)
+- [MenuState](https://github.com/leonor-f/LDTS_BrickBreaker/blob/master/src/main/java/com/aor/brickbreaker/states/MenuState.java)
+- [InstructionsState](https://github.com/leonor-f/LDTS_BrickBreaker/blob/master/src/main/java/com/aor/brickbreaker/states/InstructionsState.java)
 
 #### **Consequences**
 By implementing this pattern to our code, it became easier to read, and also to change it. Each state has
@@ -157,11 +157,11 @@ creation of the same methods over and over again.
 
 We can check the implementation of this pattern in our code in the following links:
 
-- [Element](https://github.com/FEUP-LDTS-2022/project-l09gr04/blob/7cba1489a9f42975289dfa973fcb3078089bf3eb/src/main/java/com/aor/brickbreaker/model/game/elements/Element.java)
-- [Ball](https://github.com/FEUP-LDTS-2022/project-l09gr04/blob/7cba1489a9f42975289dfa973fcb3078089bf3eb/src/main/java/com/aor/brickbreaker/model/game/elements/Ball.java)
-- [Brick](https://github.com/FEUP-LDTS-2022/project-l09gr04/blob/7cba1489a9f42975289dfa973fcb3078089bf3eb/src/main/java/com/aor/brickbreaker/model/game/elements/Brick.java)
-- [Platform](https://github.com/FEUP-LDTS-2022/project-l09gr04/blob/7cba1489a9f42975289dfa973fcb3078089bf3eb/src/main/java/com/aor/brickbreaker/model/game/elements/Platform.java)
-- [Wall](https://github.com/FEUP-LDTS-2022/project-l09gr04/blob/7cba1489a9f42975289dfa973fcb3078089bf3eb/src/main/java/com/aor/brickbreaker/model/game/elements/Wall.java)
+- [Element](https://github.com/leonor-f/LDTS_BrickBreaker/blob/master/src/main/java/com/aor/brickbreaker/model/game/elements/Element.java)
+- [Ball](https://github.com/leonor-f/LDTS_BrickBreaker/blob/master/src/main/java/com/aor/brickbreaker/model/game/elements/Ball.java)
+- [Brick](https://github.com/leonor-f/LDTS_BrickBreaker/blob/master/src/main/java/com/aor/brickbreaker/model/game/elements/Brick.java)
+- [Platform](https://github.com/leonor-f/LDTS_BrickBreaker/blob/master/src/main/java/com/aor/brickbreaker/model/game/elements/Platform.java)
+- [Wall](https://github.com/leonor-f/LDTS_BrickBreaker/blob/master/src/main/java/com/aor/brickbreaker/model/game/elements/Wall.java)
 
 #### **Consequences**
 Resulting from this pattern, when we create a new element, we are able to learn
@@ -233,7 +233,7 @@ into different new methods, as mentioned before.
     <img src="./resources/Pitest.png"/>
 </p>
 
-[PITEST](https://github.com/FEUP-LDTS-2022/project-l09gr04/tree/main/src/test/pitest/202212210942)
+[PITEST](https://github.com/leonor-f/LDTS_BrickBreaker/tree/master/src/test/pitest/202212210942)
 
 
 ### SELF-EVALUATION

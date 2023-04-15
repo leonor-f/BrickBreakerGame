@@ -14,7 +14,7 @@ The game ends when there are no more bricks at the top or when the ball falls of
 This project was developed by *Armando Martins* (*up201603566*@fe.up.pt), *Gonçalo Costa* (*up202103336*@fe.up.pt) and
 *Leonor Filipe* (*up202204354*@edu.fe.up.pt) for LDTS 2022/2023.
 
-[Full report](https://github.com/FEUP-LDTS-2022/project-l09gr04/tree/main/docs)
+[Full report](https://github.com/leonor-f/LDTS_BrickBreaker/blob/master/docs/README.md)
 
 
 ### PROJECT DEMO
