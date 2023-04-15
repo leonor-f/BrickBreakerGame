@@ -1,0 +1,250 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ArenaController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.aor.brickbreaker.controller.game</a>
+</div>
+
+<h1>Coverage Summary for Class: ArenaController (com.aor.brickbreaker.controller.game)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ArenaController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    23,5%
+  </span>
+  <span class="absValue">
+    (4/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    22%
+  </span>
+  <span class="absValue">
+    (13/59)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.aor.brickbreaker.controller.game;
+&nbsp;
+&nbsp;import com.aor.brickbreaker.model.game.elements.Brick;
+&nbsp;import com.aor.brickbreaker.states.GameState;
+&nbsp;import com.aor.brickbreaker.states.MenuState;
+&nbsp;import com.aor.brickbreaker.Game;
+&nbsp;import com.aor.brickbreaker.gui.GUI;
+&nbsp;import com.aor.brickbreaker.model.game.arena.Arena;
+&nbsp;import com.aor.brickbreaker.model.menu.Menu;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;import static com.aor.brickbreaker.Constants.*;
+&nbsp;
+&nbsp;public class ArenaController extends GameController {
+&nbsp;
+&nbsp;    private final BallController ballController;
+&nbsp;    private GameState gameState;
+&nbsp;    private final PlatformController platformController;
+&nbsp;    private BrickController brickController;
+<b class="fc">&nbsp;    private List&lt;Brick&gt; bricks = getModel().getBricks();</b>
+<b class="fc">&nbsp;    private double auxScore = 0;</b>
+&nbsp;
+&nbsp;    public ArenaController(Arena arena) {
+<b class="fc">&nbsp;        super(arena);</b>
+<b class="fc">&nbsp;        this.ballController = new BallController(arena);</b>
+<b class="fc">&nbsp;        this.platformController = new PlatformController(arena);</b>
+<b class="fc">&nbsp;        ballController.setArenaController(this);</b>
+<b class="fc">&nbsp;        brickController = new BrickController(bricks);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public BallController getBallController() {
+<b class="nc">&nbsp;        return ballController;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public GameState getGameState() {
+<b class="nc">&nbsp;        return gameState;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setGameState(GameState gameState) {
+<b class="nc">&nbsp;        this.gameState = gameState;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PlatformController getPlatformController() {
+<b class="nc">&nbsp;        return platformController;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public BrickController getBrickController() {
+<b class="nc">&nbsp;        return brickController;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBrickController(BrickController brickController) {
+<b class="nc">&nbsp;        this.brickController = brickController;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;Brick&gt; getBricks() {
+<b class="nc">&nbsp;        return bricks;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBricks(List&lt;Brick&gt; bricks) {
+<b class="nc">&nbsp;        this.bricks = bricks;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public double getAuxScore() {
+<b class="fc">&nbsp;        return auxScore;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setAuxScore(double auxScore) {
+<b class="fc">&nbsp;        this.auxScore = auxScore;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean didHitPlatform() {
+<b class="nc">&nbsp;        int ballY = ballController.getBall().getPosition().getY();</b>
+<b class="nc">&nbsp;        int ballX = ballController.getBall().getPosition().getX();</b>
+<b class="nc">&nbsp;        int platformX = platformController.getPlatform().getPosition().getX();</b>
+<b class="nc">&nbsp;        int platformSize = platformController.getPlatform().getSize();</b>
+&nbsp;
+<b class="nc">&nbsp;        return ballY == PLATFORM_Y - PLATFORM_HEIGHT &amp;&amp; ballX &gt;= platformX &amp;&amp; ballX &lt;= platformX + platformSize;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void hitPlatform() {
+<b class="nc">&nbsp;        int ballX = ballController.getBall().getPosition().getX();</b>
+<b class="nc">&nbsp;        int platformX = platformController.getPlatform().getPosition().getX();</b>
+<b class="nc">&nbsp;        int platformSize = platformController.getPlatform().getSize();</b>
+&nbsp;
+<b class="nc">&nbsp;        int ballXDir = ballController.getBall().getDirectionX();</b>
+&nbsp;        double distFromCenter;
+&nbsp;        int nextDirX;
+<b class="nc">&nbsp;        distFromCenter = (double) (ballX - platformX) / platformSize;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (distFromCenter &gt; 0.5 &amp;&amp; ballXDir &lt; 0)</b>
+<b class="nc">&nbsp;            nextDirX = 1;</b>
+<b class="nc">&nbsp;        else if (distFromCenter &lt; 0.5 &amp;&amp; ballXDir &gt; 0)</b>
+<b class="nc">&nbsp;            nextDirX = -1;</b>
+&nbsp;        else
+<b class="nc">&nbsp;            nextDirX = ballXDir;</b>
+&nbsp;
+<b class="nc">&nbsp;        ballController.hitPlatform(nextDirX);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean didHitBrick() {
+<b class="nc">&nbsp;        int ballY = ballController.getBall().getPosition().getY();</b>
+<b class="nc">&nbsp;        int ballX = ballController.getBall().getPosition().getX();</b>
+&nbsp;
+<b class="nc">&nbsp;        for (Brick brick : bricks) {</b>
+<b class="nc">&nbsp;            int brickX = brick.getPosition().getX();</b>
+<b class="nc">&nbsp;            int brickY = brick.getPosition().getY();</b>
+&nbsp;
+<b class="nc">&nbsp;            if (ballY == brickY + BRICK_HEIGHT &amp;&amp; ballX &gt;= brickX &amp;&amp; ballX &lt;= brickX + BRICK_WIDTH &amp;&amp; !brick.isDestroyed()) {</b>
+<b class="nc">&nbsp;                ballController.hitBrick();</b>
+<b class="nc">&nbsp;                brickController.getsHit(brick);</b>
+<b class="nc">&nbsp;                platformController.updateScore(brick.getPoints());</b>
+<b class="nc">&nbsp;                dropBooster(platformController.getPlatform().getScore());</b>
+<b class="nc">&nbsp;                bricks = brickController.getBricks();</b>
+<b class="nc">&nbsp;                return true;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void lostLife() {
+<b class="nc">&nbsp;        if (ballController.getBall().getPosition().getY() &gt; PLATFORM_Y) {</b>
+<b class="nc">&nbsp;            platformController.lostLife();</b>
+<b class="nc">&nbsp;            ballController.resetBall();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void dropBooster(double score) {
+<b class="fc">&nbsp;        if (score &gt;= N_POINTS_TO_DROP_BOOSTER + getAuxScore() &amp;&amp;</b>
+<b class="fc">&nbsp;                platformController.getPlatform().getSize() + PLATFORM_SIZE_BOOSTER &lt;= MAX_PLATFORM_SIZE) {</b>
+<b class="fc">&nbsp;            setAuxScore(getAuxScore() + N_POINTS_TO_DROP_BOOSTER);</b>
+<b class="fc">&nbsp;            platformController.updateSize();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+<b class="nc">&nbsp;        if (action == GUI.ACTION.QUIT || getModel().getPlatform().getLives() == 0)</b>
+<b class="nc">&nbsp;            game.setState(new MenuState(new Menu()));</b>
+&nbsp;        else {
+<b class="nc">&nbsp;            ballController.step(game, GUI.ACTION.NONE, time);</b>
+<b class="nc">&nbsp;            lostLife();</b>
+<b class="nc">&nbsp;            platformController.step(game, action, time);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 16:50</div>
+</div>
+</body>
+</html>

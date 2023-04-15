@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package "Domain" #DDDDDD {
+  package "Model" {
+      package "Game" {
+        package "Elements" {
+            abstract class Element{
+            -position: Position
+            }
+
+            Element<|--Platform
+            Element<|--Brick
+            Element<|-- Ball
+            Element<|--Wall
+
+            class Ball {
+                - directionX, directionY, brickHits: int
+                - destroyedBrick: boolean
+            }
+
+            class Platform {
+                - score: double
+                - lives, size: int
+                +updateScore(points): void
+                +updateLives(): void
+                +updateSize(): void
+            }
+
+            class Brick {
+                - destroyed: boolean
+                - points, hits: int
+                - color: String
+                +updateHits(): void
+                +getRandomPoints(): int
+            }
+
+            class Wall {}
+
+            abstract class Element {
+                - position: Position
+            }
+        }
+      }
+  }
+}
+
+@enduml

@@ -1,0 +1,167 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PlatformController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.aor.brickbreaker.controller.game</a>
+</div>
+
+<h1>Coverage Summary for Class: PlatformController (com.aor.brickbreaker.controller.game)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PlatformController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    54,5%
+  </span>
+  <span class="absValue">
+    (6/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    46,7%
+  </span>
+  <span class="absValue">
+    (7/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.aor.brickbreaker.controller.game;
+&nbsp;
+&nbsp;import com.aor.brickbreaker.model.Position;
+&nbsp;import com.aor.brickbreaker.Game;
+&nbsp;import com.aor.brickbreaker.gui.GUI;
+&nbsp;import com.aor.brickbreaker.model.game.arena.Arena;
+&nbsp;import com.aor.brickbreaker.model.game.elements.Platform;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;import static com.aor.brickbreaker.Constants.*;
+&nbsp;
+&nbsp;public class PlatformController extends GameController {
+&nbsp;
+<b class="fc">&nbsp;    private Platform platform = getModel().getPlatform();</b>
+&nbsp;
+&nbsp;    public PlatformController(Arena arena) {
+<b class="fc">&nbsp;        super(arena);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+<b class="nc">&nbsp;        if (action == GUI.ACTION.LEFT &amp;&amp; canPlatformMoveLeft(getModel().getPlatform().getPosition()))</b>
+<b class="nc">&nbsp;            MoveLeft();</b>
+<b class="nc">&nbsp;        if (action == GUI.ACTION.RIGHT &amp;&amp; canPlatformMoveRight(getModel().getPlatform().getPosition()))</b>
+<b class="nc">&nbsp;            MoveRight();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void MoveLeft() {
+<b class="fc">&nbsp;        getModel().getPlatform().setPosition(getModel().getPlatform().getPosition().getX() - 1, PLATFORM_Y);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void MoveRight() {
+<b class="fc">&nbsp;        getModel().getPlatform().setPosition(getModel().getPlatform().getPosition().getX() + 1, PLATFORM_Y);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private boolean canPlatformMoveLeft(Position position) {
+<b class="nc">&nbsp;        return position.getX() &gt; 1;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private boolean canPlatformMoveRight(Position position) {
+<b class="nc">&nbsp;        return !(position.getX() &gt; WIDTH - getModel().getPlatform().getSize() - 2);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Platform getPlatform() {
+<b class="fc">&nbsp;        return platform;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPlatform(Platform platform) {
+<b class="nc">&nbsp;        this.platform = platform;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void updateScore(int points) {
+<b class="nc">&nbsp;        getModel().getPlatform().updateScore((double) points / MIN_HITS_TO_DESTROY);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void updateSize() {
+<b class="fc">&nbsp;        getModel().getPlatform().updateSize();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void lostLife() {
+<b class="fc">&nbsp;        getModel().getPlatform().updateLives();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 16:50</div>
+</div>
+</body>
+</html>

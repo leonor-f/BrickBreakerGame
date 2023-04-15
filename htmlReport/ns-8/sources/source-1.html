@@ -1,0 +1,151 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Ball</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.aor.brickbreaker.model.game.elements</a>
+</div>
+
+<h1>Coverage Summary for Class: Ball (com.aor.brickbreaker.model.game.elements)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Ball</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    78,6%
+  </span>
+  <span class="absValue">
+    (11/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.aor.brickbreaker.model.game.elements;
+&nbsp;
+&nbsp;import com.aor.brickbreaker.model.Position;
+&nbsp;
+&nbsp;import static com.aor.brickbreaker.Constants.*;
+&nbsp;
+&nbsp;public class Ball extends Element {
+&nbsp;
+<b class="fc">&nbsp;    private int directionX, directionY, brickHits = 0;</b>
+<b class="fc">&nbsp;    private boolean destroyedBrick = false;</b>
+&nbsp;
+&nbsp;    public Ball(Position position, int directionX, int directionY){
+<b class="nc">&nbsp;        super(position);</b>
+<b class="nc">&nbsp;        this.directionX = directionX;</b>
+<b class="nc">&nbsp;        this.directionY = directionY;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Ball(){
+<b class="fc">&nbsp;        super(BALL_X, BALL_Y);</b>
+<b class="fc">&nbsp;        this.directionX = 1;</b>
+<b class="fc">&nbsp;        this.directionY = 1;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getDirectionX() {
+<b class="fc">&nbsp;        return directionX;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setDirectionX(int directionX) {
+<b class="fc">&nbsp;        this.directionX = directionX;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getDirectionY() {
+<b class="fc">&nbsp;        return directionY;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setDirectionY(int directionY) {
+<b class="fc">&nbsp;        this.directionY = directionY;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isDestroyedBrick() {
+<b class="fc">&nbsp;        return destroyedBrick;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setDestroyedBrick() {
+<b class="fc">&nbsp;        this.destroyedBrick = true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 16:50</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package "Viewer" #DDDDDD {
+    abstract class Viewer<T> {
+        +draw(GUI): void
+        +drawElements(GUI): void
+    }
+
+    class InstructionsViewer {
+        +drawElements(GUI): void
+    }
+
+    package "Game" {
+        interface ElementViewer<T> {
+            +drawElement(element, GUI): void
+        }
+
+        class BallViewer {
+            +drawElement(element, GUI): void
+        }
+
+        class PlatformViewer {
+            +drawElement(element, GUI): void
+        }
+
+        class BrickViewer {
+            +drawElement(element, GUI): void
+        }
+
+        class WallViewer {
+            +drawElement(element, GUI): void
+        }
+
+        class GameViewer {
+            +drawElements(GUI): void
+            +drawElements(GUI, elements, viewer)
+            +drawElement(GUI, element, viewer)
+        }
+    }
+}
+
+GameViewer"extends"--|> Viewer
+MenuViewer"extends" --|>Viewer
+InstructionsViewer"extends"--|> Viewer
+
+GameViewer ..> ElementViewer
+BallViewer ..|> ElementViewer: implements
+PlatformViewer ..|> ElementViewer: implements
+BrickViewer ..|> ElementViewer: implements
+WallViewer ..|> ElementViewer: implements
+
+
+@enduml

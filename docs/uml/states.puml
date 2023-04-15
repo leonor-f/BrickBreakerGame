@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package "States" #DDDDDD {
+    abstract class State {
+        +getController(): Controller<T>
+        +getViewer(): Viewer<T>
+        +step(game, gui, time): void
+    }
+
+    class GameState {
+        +getController()
+        +getViewer()
+    }
+
+    class MenuState {
+        +getController()
+        +getViewer()
+    }
+
+    class InstructionsState {
+        +getController()
+        +getViewer()
+    }
+}
+
+State<|--GameState
+State<|--MenuState
+State<|--InstructionsState
+
+
+@enduml

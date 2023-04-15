@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MenuController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.aor.brickbreaker.controller.menu</a>
+</div>
+
+<h1>Coverage Summary for Class: MenuController (com.aor.brickbreaker.controller.menu)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MenuController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">MenuController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.aor.brickbreaker.controller.menu;
+&nbsp;
+&nbsp;import com.aor.brickbreaker.model.game.arena.LoaderArenaBuilder;
+&nbsp;import com.aor.brickbreaker.Game;
+&nbsp;import com.aor.brickbreaker.controller.Controller;
+&nbsp;import com.aor.brickbreaker.gui.GUI;
+&nbsp;import com.aor.brickbreaker.model.menu.Menu;
+&nbsp;import com.aor.brickbreaker.states.GameState;
+&nbsp;import com.aor.brickbreaker.states.InstructionsState;
+&nbsp;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;public class MenuController extends Controller&lt;Menu&gt; {
+&nbsp;
+<b class="nc">&nbsp;    public MenuController(Menu menu){super(menu);}</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+<b class="nc">&nbsp;        switch (action) {</b>
+&nbsp;            case UP:
+<b class="nc">&nbsp;                getModel().previousEntry();</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case DOWN:
+<b class="nc">&nbsp;                getModel().nextEntry();</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case SELECT:
+<b class="nc">&nbsp;                if (getModel().isSelectedExit()) game.setState(null);</b>
+<b class="nc">&nbsp;                if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder().createArena()));</b>
+<b class="nc">&nbsp;                if (getModel().isSelectedInstructions()) game.setState(new InstructionsState(null));</b>
+&nbsp;            default:
+&nbsp;                break;
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 16:50</div>
+</div>
+</body>
+</html>

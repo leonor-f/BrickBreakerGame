@@ -1,0 +1,208 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > BallController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.aor.brickbreaker.controller.game</a>
+</div>
+
+<h1>Coverage Summary for Class: BallController (com.aor.brickbreaker.controller.game)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BallController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (8/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    30,3%
+  </span>
+  <span class="absValue">
+    (10/33)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.aor.brickbreaker.controller.game;
+&nbsp;
+&nbsp;import com.aor.brickbreaker.Game;
+&nbsp;import com.aor.brickbreaker.gui.GUI;
+&nbsp;import com.aor.brickbreaker.model.Position;
+&nbsp;import com.aor.brickbreaker.model.game.arena.Arena;
+&nbsp;import com.aor.brickbreaker.model.game.elements.Ball;
+&nbsp;
+&nbsp;import javax.imageio.IIOException;
+&nbsp;
+&nbsp;import static com.aor.brickbreaker.Constants.*;
+&nbsp;
+&nbsp;public class BallController extends GameController{
+&nbsp;
+<b class="fc">&nbsp;    private Ball ball = getModel().getBall();</b>
+&nbsp;    private long start;
+&nbsp;    private ArenaController arenaController;
+&nbsp;
+&nbsp;    public BallController(Arena arena){
+<b class="fc">&nbsp;        super(arena);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void startBallTimer() {
+<b class="nc">&nbsp;        this.start = System.currentTimeMillis();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void move() {
+<b class="nc">&nbsp;        long end = System.currentTimeMillis();</b>
+<b class="nc">&nbsp;        long elapsedTime = end - start;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (elapsedTime &gt; 1000) {</b>
+<b class="nc">&nbsp;            if(didHitLeft() || didHitRight())</b>
+<b class="nc">&nbsp;                HitWall();</b>
+<b class="nc">&nbsp;            if(didHitUP())</b>
+<b class="nc">&nbsp;                HitUp();</b>
+&nbsp;
+<b class="nc">&nbsp;            ball.setPosition(ball.getPosition().getX() + ball.getDirectionX(),</b>
+<b class="nc">&nbsp;                    ball.getPosition().getY() + ball.getDirectionY());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void step(Game game, GUI.ACTION action, long time) throws IIOException {
+<b class="nc">&nbsp;        if(arenaController.didHitPlatform())</b>
+<b class="nc">&nbsp;            arenaController.hitPlatform();</b>
+<b class="nc">&nbsp;        if (!ball.isDestroyedBrick())</b>
+<b class="nc">&nbsp;            arenaController.didHitBrick();</b>
+<b class="nc">&nbsp;        move();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setArenaController(ArenaController arenaController) {
+<b class="fc">&nbsp;        this.arenaController = arenaController;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ArenaController getArenaController() {
+<b class="nc">&nbsp;        return arenaController;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Ball getBall() {
+<b class="fc">&nbsp;        return ball;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setBall(Ball ball) {
+<b class="fc">&nbsp;        this.ball = ball;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void HitWall(){
+<b class="fc">&nbsp;        ball.setDirectionX(-ball.getDirectionX());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void HitUp(){
+<b class="fc">&nbsp;        ball.setDirectionY(1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private boolean didHitRight(){
+<b class="nc">&nbsp;        return ball.getPosition().getX() &gt;= WIDTH -2;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private boolean didHitLeft() {
+<b class="nc">&nbsp;        return ball.getPosition().getX() &lt;= 1;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private boolean didHitUP() {
+<b class="nc">&nbsp;        return ball.getPosition().getY() &lt;= 2;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void hitPlatform(int xDir) {
+<b class="fc">&nbsp;        ball.setDirectionY(-ball.getDirectionY());</b>
+<b class="fc">&nbsp;        ball.setDirectionX(xDir);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void hitBrick() {
+<b class="fc">&nbsp;        ball.setDirectionY(-ball.getDirectionY());</b>
+&nbsp;        //ball.updateBrickHits();
+&nbsp;        //if(ball.getBrickHits() == MIN_HITS_TO_DESTROY) ball.setDestroyedBrick();
+&nbsp;    }
+&nbsp;
+&nbsp;    public void resetBall() {
+<b class="nc">&nbsp;        ball.setPosition(new Position(getModel().getPlatform().getPosition().getX() + (getModel().getPlatform().getSize())/2, BALL_Y ));</b>
+<b class="nc">&nbsp;        ball.setDirectionX(1);</b>
+<b class="nc">&nbsp;        ball.setDirectionY(-1);</b>
+<b class="nc">&nbsp;        start = System.currentTimeMillis();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 16:50</div>
+</div>
+</body>
+</html>

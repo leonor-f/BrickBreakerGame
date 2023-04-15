@@ -1,0 +1,307 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LanternaGUI</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.aor.brickbreaker.gui</a>
+</div>
+
+<h1>Coverage Summary for Class: LanternaGUI (com.aor.brickbreaker.gui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LanternaGUI</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/78)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.aor.brickbreaker.gui;
+&nbsp;
+&nbsp;import com.aor.brickbreaker.model.Position;
+&nbsp;import com.googlecode.lanterna.SGR;
+&nbsp;import com.googlecode.lanterna.TerminalPosition;
+&nbsp;import com.googlecode.lanterna.input.KeyStroke;
+&nbsp;import com.googlecode.lanterna.input.KeyType;
+&nbsp;import com.googlecode.lanterna.terminal.Terminal;
+&nbsp;import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+&nbsp;import com.googlecode.lanterna.TerminalSize;
+&nbsp;import com.googlecode.lanterna.TextColor;
+&nbsp;import com.googlecode.lanterna.graphics.TextGraphics;
+&nbsp;import com.googlecode.lanterna.screen.TerminalScreen;
+&nbsp;import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+&nbsp;import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.io.File;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;import static com.aor.brickbreaker.Constants.*;
+&nbsp;import static com.googlecode.lanterna.Symbols.*;
+&nbsp;
+&nbsp;public class LanternaGUI implements GUI{
+&nbsp;
+&nbsp;    private final TerminalScreen screen;
+&nbsp;
+<b class="nc">&nbsp;    public LanternaGUI() throws IOException, FontFormatException {</b>
+<b class="nc">&nbsp;        AWTTerminalFontConfiguration fontConfig = loadFont();</b>
+<b class="nc">&nbsp;        Terminal terminal = createTerminal(fontConfig);</b>
+<b class="nc">&nbsp;        this.screen = createScreen(terminal);</b>
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public LanternaGUI(TerminalScreen screen){</b>
+<b class="nc">&nbsp;        this.screen = screen;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public TerminalScreen createScreen(Terminal terminal) throws IOException{
+&nbsp;        final TerminalScreen terminalScreen;
+<b class="nc">&nbsp;        terminalScreen = new TerminalScreen(terminal);</b>
+<b class="nc">&nbsp;        terminalScreen.setCursorPosition(null);</b>
+<b class="nc">&nbsp;        terminalScreen.startScreen();</b>
+<b class="nc">&nbsp;        terminalScreen.doResizeIfNecessary();</b>
+<b class="nc">&nbsp;        return terminalScreen;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Terminal createTerminal(AWTTerminalFontConfiguration fontConfig) throws IOException{
+<b class="nc">&nbsp;        TerminalSize terminalSize = new TerminalSize(WIDTH, HEIGHT);</b>
+<b class="nc">&nbsp;        DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);</b>
+<b class="nc">&nbsp;        defaultTerminalFactory.setForceAWTOverSwing(true);</b>
+<b class="nc">&nbsp;        defaultTerminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);</b>
+<b class="nc">&nbsp;        Terminal terminal = defaultTerminalFactory.createTerminal();</b>
+<b class="nc">&nbsp;        ((AWTTerminalFrame)terminal).setTitle(&quot;Brick Breaker&quot;);</b>
+<b class="nc">&nbsp;        return terminal;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public AWTTerminalFontConfiguration loadFont() throws FontFormatException,IOException{
+<b class="nc">&nbsp;        File fontFile = new File(&quot;resources/font.ttf&quot;);</b>
+<b class="nc">&nbsp;        Font font = null;</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            font = Font.createFont(Font.TRUETYPE_FONT, fontFile);</b>
+<b class="nc">&nbsp;        } catch (FontFormatException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;        } catch (IOException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();</b>
+<b class="nc">&nbsp;        ge.registerFont(font);</b>
+&nbsp;
+<b class="nc">&nbsp;        Font loadedFont = font.deriveFont(Font.PLAIN, 17);</b>
+<b class="nc">&nbsp;        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);</b>
+<b class="nc">&nbsp;        return fontConfig;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public ACTION getNextAction() throws IOException {
+<b class="nc">&nbsp;        KeyStroke keyStroke = screen.pollInput();</b>
+<b class="nc">&nbsp;        if (keyStroke == null) return ACTION.NONE;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Character &amp;&amp; keyStroke.getCharacter() == &#39;q&#39;) return ACTION.QUIT;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.UP;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowLeft) return ACTION.LEFT;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.SELECT;</b>
+&nbsp;
+<b class="nc">&nbsp;        return ACTION.NONE;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public TextGraphics createTextGraphics(){
+<b class="nc">&nbsp;        return screen.newTextGraphics();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int getWidth(){
+<b class="nc">&nbsp;        return WIDTH;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int getHeight(){
+<b class="nc">&nbsp;        return HEIGHT;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawArena(TextGraphics textGraphics) {
+<b class="nc">&nbsp;        textGraphics.setBackgroundColor(TextColor.Factory.fromString(BLUE));</b>
+<b class="nc">&nbsp;        textGraphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(WIDTH, HEIGHT), &#39; &#39;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawBall(Position position) {
+<b class="nc">&nbsp;        drawRectangle(position, &#39;@&#39;, WHITE, 1, 1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawPlatform(Position position, int size) {
+<b class="nc">&nbsp;        drawRectangle(position, &#39;-&#39;, WHITE, size, PLATFORM_HEIGHT);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawWall(Position position){
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        tg.setForegroundColor(TextColor.Factory.fromString(&quot;#3333FF&quot;));</b>
+<b class="nc">&nbsp;        tg.putString(position.getX(), position.getY()+ 1, &quot; &quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawBrick(int hits, Position position) {
+<b class="nc">&nbsp;        String color = switch (hits) {</b>
+<b class="nc">&nbsp;            case 1 -&gt; YELLOW;</b>
+<b class="nc">&nbsp;            case 2 -&gt; RED;</b>
+<b class="nc">&nbsp;            default -&gt; GREEN;</b>
+&nbsp;        };
+<b class="nc">&nbsp;        drawRectangle(position, &#39;-&#39;, color, BRICK_WIDTH, BRICK_HEIGHT);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void drawText(TextGraphics textGraphics, Position position, String text, String color) {
+<b class="nc">&nbsp;        if (text == &quot; &quot;) {</b>
+<b class="nc">&nbsp;            textGraphics.setBackgroundColor(TextColor.Factory.fromString(color));</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            textGraphics.setForegroundColor(TextColor.Factory.fromString(color));</b>
+<b class="nc">&nbsp;            textGraphics.enableModifiers(SGR.BOLD);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        textGraphics.putString(position.getX(), position.getY(), text);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void drawRectangle(Position position, char c, String color, int width, int height) {
+<b class="nc">&nbsp;        TextGraphics textGraphics = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        textGraphics.setForegroundColor(TextColor.Factory.fromString(color));</b>
+<b class="nc">&nbsp;        textGraphics.drawRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(width, height), c);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawButton(Position bPos, Position tPos, String text, String textColor){
+<b class="nc">&nbsp;        TextGraphics textGraphics = createTextGraphics();</b>
+<b class="nc">&nbsp;        drawText(textGraphics,tPos, text, textColor);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawTitle(Position position, String text, String color) {
+<b class="nc">&nbsp;        TextGraphics textGraphics = createTextGraphics();</b>
+<b class="nc">&nbsp;        drawText(textGraphics,position, text,color);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawText(Position position, String text, String color) {
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        tg.setForegroundColor(TextColor.Factory.fromString(color));</b>
+<b class="nc">&nbsp;        tg.putString(position.getX(), position.getY(), text);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawInfo(int points, int lives){
+<b class="nc">&nbsp;        TextGraphics textGraphics = createTextGraphics();</b>
+<b class="nc">&nbsp;        drawText(textGraphics,new Position(3, 37), Integer.toString(points), &quot;#FF00FF&quot;);</b>
+<b class="nc">&nbsp;        drawText(textGraphics,new Position(53, 37), Integer.toString(lives) + HEART, &quot;#FF0000&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void clear(){
+<b class="nc">&nbsp;        screen.clear();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void refresh() throws IOException{
+<b class="nc">&nbsp;        screen.refresh();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void close() throws IOException{
+<b class="nc">&nbsp;        screen.close();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void addKeyBoardListener(KeyBoardObserver observer){
+<b class="nc">&nbsp;        ((AWTTerminalFrame) screen.getTerminal()).getComponent(0).addKeyListener(observer);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-19 16:50</div>
+</div>
+</body>
+</html>
