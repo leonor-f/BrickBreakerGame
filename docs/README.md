@@ -10,7 +10,7 @@ in its size a limited number of times.
 The game ends when there are no more bricks at the top or when the ball falls off the platform for the third time.
 Every time the ball passes under the platform a life is lost. In this case, the ball restarts in the middle of the bar.
 
-This project was developed by *Armando Martins* (*up201603566*@fe.up.pt), *GonÃ§alo Costa* (*up202103336*@fe.up.pt) and
+This project was developed by *Armando Martins* (*up201603566*@fe.up.pt), *Gonçalo Costa* (*up202103336*@fe.up.pt) and
 *Leonor Filipe* (*up202204354*@edu.fe.up.pt) for LDTS 2022/2023.
 
 ### IMPLEMENTED FEATURES
