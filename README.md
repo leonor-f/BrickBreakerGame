@@ -1,4 +1,5 @@
-## LDTS_T09_G04 - BRICK BREAKER
+## BRICK BREAKER
+#### Grade: 17/20
 
 Our game is the classic Brick Breaker game, launched at 1999.
 
